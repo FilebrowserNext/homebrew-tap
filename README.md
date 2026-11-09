@@ -4,18 +4,31 @@ Official [Homebrew](https://brew.sh) tap for [File Browser Next](https://github.
 
 ## Installation
 
-### Option 1: Direct Install (One Command)
+### Recommended Method
 
+1. Add and trust the official tap:
 ```bash
-brew install FilebrowserNext/tap/filebrowser
+brew tap filebrowsernext/tap
+brew trust filebrowsernext/tap
 ```
 
-### Option 2: Tap then Install
+2. If you previously had the legacy archived `homebrew/core/filebrowser` installed, remove it first:
+```bash
+brew uninstall filebrowser
+```
+
+3. Install File Browser Next:
+```bash
+brew install filebrowsernext/tap/filebrowser
+```
+
+### Direct Install (One Command)
 
 ```bash
-brew tap FilebrowserNext/tap
-brew install filebrowser
+brew install filebrowsernext/tap/filebrowser
 ```
+
+*(If prompted by Homebrew, run `brew trust filebrowsernext/tap` to authorize the tap).*
 
 ## Starting the Server
 
@@ -32,5 +45,5 @@ Default credentials: `admin` / `admin`.
 
 ```bash
 brew update
-brew upgrade filebrowser
+brew upgrade filebrowsernext/tap/filebrowser
 ```

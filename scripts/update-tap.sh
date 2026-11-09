@@ -76,45 +76,4 @@ class Filebrowser < Formula
 end
 EOF
 
-echo "Updating Casks/filebrowser.rb..."
-cat << EOF > Casks/filebrowser.rb
-cask "filebrowser" do
-  version "${VERSION}"
-
-  on_macos do
-    on_intel do
-      url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-darwin-amd64.tar.gz"
-      sha256 "${DARWIN_AMD64_SHA}"
-    end
-    on_arm do
-      url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-darwin-arm64.tar.gz"
-      sha256 "${DARWIN_ARM64_SHA}"
-    end
-  end
-
-  on_linux do
-    on_intel do
-      url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-linux-amd64.tar.gz"
-      sha256 "${LINUX_AMD64_SHA}"
-    end
-    on_arm do
-      url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-linux-arm64.tar.gz"
-      sha256 "${LINUX_ARM64_SHA}"
-    end
-  end
-
-  name "filebrowser"
-  desc "Modern, secure, and self-hosted web file manager"
-  homepage "https://github.com/FilebrowserNext/filebrowserNEXT"
-
-  binary "filebrowser"
-
-  postflight do
-    if system_command("/usr/bin/xattr", args: ["-h"]).exit_status == 0
-      system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/filebrowser"]
-    end
-  end
-end
-EOF
-
-echo "Formula and Casks updated to version ${VERSION}."
+echo "Formula updated to version ${VERSION}."
