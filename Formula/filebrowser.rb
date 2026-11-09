@@ -1,26 +1,26 @@
 class Filebrowser < Formula
   desc "Modern, secure, and self-hosted web-based file manager"
   homepage "https://github.com/FilebrowserNext/filebrowserNEXT"
-  version "3.0.0-next"
+  version "3.0.1-next"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-darwin-amd64.tar.gz"
-      sha256 "8ec45ab1682137afa281d0fc39451c3b54956603056f986a19367cb927e9e8c2"
+      sha256 "29635005df501fa20491bc48cb5de0e035b25622354b2d3001acd2a2e8ab3960"
     else
       url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-darwin-arm64.tar.gz"
-      sha256 "859614f13e29a7231ec2e07949d6f053b2d6637c3fc3690a2fcf27d41a2a1ad9"
+      sha256 "b81e9f23ee7d50b5b3f4f35a8b4b233ec5680d1fe34ba8bea213ed33f641bc29"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-linux-amd64.tar.gz"
-      sha256 "17a51c2b8fe2eaf88ca4f7a80bd2f2b2e7fe968961bbeb8569a86942696e08b0"
+      sha256 "6a631d1c95be3ffdda73733cb6190f285aae9a238ecc448f053ca902e42cedd3"
     else
       url "https://github.com/FilebrowserNext/filebrowserNEXT/releases/download/v#{version}/filebrowser-linux-arm64.tar.gz"
-      sha256 "df0b301ffad4535877c2a1baadecf6780c38275b58e830141de26f95efab6ef1"
+      sha256 "3fca5c79a369e96e21af4fc85a5cb13950a3d4f768c001770fd5b0ab92c50821"
     end
   end
 
