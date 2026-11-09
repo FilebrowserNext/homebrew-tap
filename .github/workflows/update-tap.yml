@@ -1,0 +1,38 @@
+name: Check and Update Tap
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [new-release]
+
+permissions:
+  contents: write
+
+jobs:
+  update-tap:
+    name: Check and Update Formula & Casks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run update script
+        run: |
+          chmod +x scripts/update-tap.sh
+          ./scripts/update-tap.sh
+
+      - name: Commit and push changes if updated
+        run: |
+          if [[ -n "$(git status --porcelain Formula Casks)" ]]; then
+            VERSION=$(grep -E '^\s*version\s+"' Formula/filebrowser.rb | head -n1 | sed -E 's/.*version "([^"]+)".*/\1/')
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add Formula/filebrowser.rb Casks/filebrowser.rb
+            git commit -m "bump(filebrowser): update to v${VERSION}"
+            git push
+            echo "Successfully updated Homebrew tap to version v${VERSION}."
+          else
+            echo "No changes detected. Tap is already up to date."
+          fi
